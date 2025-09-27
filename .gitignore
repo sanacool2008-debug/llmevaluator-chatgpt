@@ -1,0 +1,46 @@
+# PyCharm
+.idea/
+*.iml
+*.log
+src/outputs/*
+!src/outputs/.gitkeep
+src/logs/*
+!src/logs/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Other IDE files
+.vscode/
+*.swp
+*.swo
+*~
