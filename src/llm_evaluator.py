@@ -1,6 +1,6 @@
-from .utils import load_config,load_article,save_output,load_prompt_config
-from .llm_setup import set_models,set_evaluator_model
-from .models import EvaluationResponse
+from src.utils import load_config,load_article,save_output,load_prompt_config
+from src.llm_setup import set_models,set_evaluator_model
+from src.models import EvaluationResponse
 
 config = load_config()
 prompt_config = load_prompt_config()
@@ -93,13 +93,15 @@ if __name__ == "__main__":
     # question = "If a company increases its revenue by 20% every year and starts with $100,000 in revenue, what will its revenue be after 5 years?"
     question = f"""Summarize the main points of the following paragraph in exactly 50 words.
 “Climate change refers to long-term alterations in temperature, precipitation, wind patterns, and other elements of the Earth’s climate system. It can be caused by natural processes or human activities, and it impacts ecosystems, weather events, and global health."""
-    models = config["models"]
-    llm_testing_prompt, llm_responses_dict = get_llm_responses(models,prompt_template_name,question)
-    evaluator_model = config["evaluator"]["openrouter_nvidia"]
-    prompt_template_eval_name = 'prompt_config_llm_evaluation'
-    evaluator_response = get_evaluator_response(evaluator_model, prompt_template_eval_name,llm_testing_prompt,llm_responses_dict)
-    print(f"Question:\n - {question}")
-    print(f"\n\nResponses from each LLM:\n{"\n".join(f"- LLM Name:{key} Response: {response}" for key,response in llm_responses_dict.items())}")
-    print(f"\n\nEvaluation Results:\n Winner :{evaluator_response.winner}\n Scores:\n{"\n".join(f"- LLM Name:{result.llm} Score: {result.score} Reason: {result.reason}" for result in evaluator_response.results)}")
+    # models = config["models"]
+    prompt = build_prompt(prompt_config.get("prompt_config_llm_evaluation")).format(prompt="",llm_responses="")
+    print(prompt)
+    # llm_testing_prompt, llm_responses_dict = get_llm_responses(models,prompt_template_name,question)
+    # evaluator_model = config["evaluator"]["openrouter_nvidia"]
+    # prompt_template_eval_name = 'prompt_config_llm_evaluation'
+    # evaluator_response = get_evaluator_response(evaluator_model, prompt_template_eval_name,llm_testing_prompt,llm_responses_dict)
+    # print(f"Question:\n - {question}")
+    # print(f"\n\nResponses from each LLM:\n{"\n".join(f"- LLM Name:{key} Response: {response}" for key,response in llm_responses_dict.items())}")
+    # print(f"\n\nEvaluation Results:\n Winner :{evaluator_response.winner}\n Scores:\n{"\n".join(f"- LLM Name:{result.llm} Score: {result.score} Reason: {result.reason}" for result in evaluator_response.results)}")
 
 

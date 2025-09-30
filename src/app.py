@@ -8,6 +8,7 @@ run_id = str(int(time.time()))
 LLM_ENDPOINT = "http://localhost:8000/responses"
 EVALUATE_ENDPOINT = "http://localhost:8000/evaluate"
 
+
 DEFAULT_MODELS = {
     "openrouter_deepseek": "deepseek/deepseek-chat-v3.1:free",
     "openrouter_nvidia": "nvidia/nemotron-nano-9b-v2:free",
@@ -17,7 +18,7 @@ DEFAULT_MODELS = {
 
 LLM_PROMPT_TEMPLATE = "prompt_config_llm_test"
 EVAL_PROMPT_TEMPLATE = "prompt_config_llm_evaluation"
-EVALUATOR_MODEL_ID = "nvidia/nemotron-nano-9b-v2:free"
+EVALUATOR_MODEL_ID = "openai/gpt-oss-20b:free"
 
 # ---------------- UI ----------------
 st.set_page_config(page_title="Model Evaluator Chatbot", layout="wide")
@@ -132,9 +133,11 @@ st.markdown("</div>", unsafe_allow_html=True)
 if st.session_state.evaluation:
     eval_data = st.session_state.evaluation
     st.markdown("---")
-    st.subheader("🧾 Evaluation Results")
+    st.subheader("🧾 Evaluation Results from n8n")
 
-    results = eval_data.get("results", [])
+    response = eval_data[0].get("output")
+    results = response.get("results")
+
     if results:
         st.dataframe(
             results,
@@ -150,10 +153,10 @@ if st.session_state.evaluation:
                     "Reason for the Score"
                 ),
             },
-            use_container_width=True
+            width='stretch'
         )
 
-    winner = eval_data.get("winner", "Unknown")
+    winner = response.get("winner", "Unknown")
     placeholder = st.empty()
     for dots in range(3):
         placeholder.markdown(f"### 🎯 Revealing winner{'.' * (dots+1)}")

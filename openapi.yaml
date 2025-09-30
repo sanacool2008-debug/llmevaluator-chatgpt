@@ -1,0 +1,47 @@
+openapi: 3.1.0
+info:
+  title: Multi-LLM Answers API
+  version: 1.0.0
+paths:
+  /responses:
+    post:
+      summary: Get responses from 3 LLMs
+      operationId: getResponses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LlmRequest'
+      responses:
+        '200':
+          description: Responses from all 3 models
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LlmResponsesModel'
+components:
+  schemas:
+    LlmRequest:
+      type: object
+      properties:
+        prompt_template_name:
+          type: string
+          example: prompt_config_llm_test
+        question:
+          type: string
+          example: What is quantum entanglement?
+    LlmResponsesModel:
+      type: object
+      properties:
+        prompt:
+          type: string
+        llm_responses:
+          type: array
+          items:
+            type: object
+            properties:
+              llm:
+                type: string
+              response:
+                type: string

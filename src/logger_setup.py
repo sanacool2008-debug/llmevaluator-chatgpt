@@ -1,6 +1,6 @@
 import logging
 import os
-from .path_setup import LOG_DIR, LOG_FPATH
+from src.path_setup import LOG_DIR, LOG_FPATH
 from functools import wraps
 
 def logger_setup(name, log_dir=LOG_DIR, log_file=LOG_FPATH, level=logging.DEBUG):

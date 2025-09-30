@@ -1,9 +1,9 @@
 import os
-from .path_setup import ENV_FPATH,APP_CONFIG_FPATH
+from src.path_setup import ENV_FPATH,APP_CONFIG_FPATH
 from langchain_openai import ChatOpenAI
-from .logger_setup import log_call_with_time,logger_setup
+from src.logger_setup import log_call_with_time,logger_setup
 from dotenv import load_dotenv
-from .utils import load_config
+from src.utils import load_config
 
 load_dotenv(ENV_FPATH, override=True)
 

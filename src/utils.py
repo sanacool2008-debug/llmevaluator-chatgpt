@@ -1,7 +1,7 @@
 import os
 import yaml
-from .path_setup import ARTICLE_FPATH,APP_CONFIG_FPATH,OUTPUTS_DIR,PROMPT_CONFIG_FPATH
-from .logger_setup import logger_setup,log_call_with_time
+from src.path_setup import ARTICLE_FPATH,APP_CONFIG_FPATH,OUTPUTS_DIR,PROMPT_CONFIG_FPATH
+from src.logger_setup import logger_setup,log_call_with_time
 from typing import Optional
 
 logger = logger_setup(__name__)
