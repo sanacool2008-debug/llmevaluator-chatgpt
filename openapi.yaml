@@ -1,11 +1,13 @@
-openapi: 3.1.0
+openapi: 3.0.1
 info:
   title: Multi-LLM Answers API
   version: 1.0.0
+servers:
+  - url: https://llmevaluator-chatgpt.onrender.com
 paths:
   /responses:
     post:
-      summary: Get responses from 3 LLMs
+      summary: Get responses from multiple LLMs
       operationId: getResponses
       requestBody:
         required: true
@@ -15,7 +17,7 @@ paths:
               $ref: '#/components/schemas/LlmRequest'
       responses:
         '200':
-          description: Responses from all 3 models
+          description: Responses from models
           content:
             application/json:
               schema:
@@ -24,13 +26,22 @@ components:
   schemas:
     LlmRequest:
       type: object
+      required:
+        - question
+        - prompt_template_name
+        - models
       properties:
-        prompt_template_name:
-          type: string
-          example: prompt_config_llm_test
         question:
           type: string
-          example: What is quantum entanglement?
+          description: "The user question"
+        prompt_template_name:
+          type: string
+          description: "Name of the prompt template"
+        models:
+          type: object
+          description: "Dictionary of model names and IDs to query"
+          additionalProperties:
+            type: string
     LlmResponsesModel:
       type: object
       properties:
