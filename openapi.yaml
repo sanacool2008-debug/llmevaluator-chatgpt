@@ -29,7 +29,6 @@ components:
       required:
         - question
         - prompt_template_name
-        - models
       properties:
         question:
           type: string
@@ -37,11 +36,6 @@ components:
         prompt_template_name:
           type: string
           description: "Name of the prompt template"
-        models:
-          type: object
-          description: "Dictionary of model names and IDs to query"
-          additionalProperties:
-            type: string
     LlmResponsesModel:
       type: object
       properties:

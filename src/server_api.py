@@ -10,7 +10,6 @@ app = FastAPI()
 
 @app.post("/responses", response_model=LlmResponsesModel)
 def get_llm_responses_with_prompt(request: LlmRequest):
-    # Define only 3 models (removed local model)
     models = {
         "openrouter_deepseek": "deepseek/deepseek-chat-v3.1:free",
         "openrouter_nvidia": "nvidia/nemotron-nano-9b-v2:free",
@@ -20,6 +19,7 @@ def get_llm_responses_with_prompt(request: LlmRequest):
     prompt, llm_responses = get_llm_responses(models, request.prompt_template_name, request.question)
     llm_responses = [{"llm": key, "response": llm_response} for key, llm_response in llm_responses.items()]
     return LlmResponsesModel(llm_responses=llm_responses, prompt=prompt)
+
 
 # --- Plugin discovery endpoints ---
 @app.get("/.well-known/ai-plugin.json")
