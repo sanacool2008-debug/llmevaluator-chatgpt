@@ -35,7 +35,10 @@ components:
           description: "The user question"
         prompt_template_name:
           type: string
-          description: "The name of the prompt template"
+          description: "The name of the prompt template. Always use 'prompt_config_llm_test'."
+          default: "prompt_config_llm_test"
+          enum:
+            - prompt_config_llm_test
     LlmResponsesModel:
       type: object
       properties:
