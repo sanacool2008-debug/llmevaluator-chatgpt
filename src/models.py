@@ -14,7 +14,6 @@ class LLMAnswer(BaseModel):
     answer: str = Field(description="LLM response")
 
 class LlmRequest(BaseModel):
-    models: Dict[str, str]
     prompt_template_name: str
     question: str
 
