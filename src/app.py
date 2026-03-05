@@ -10,9 +10,9 @@ EVALUATE_ENDPOINT = "http://localhost:8000/evaluate"
 
 
 DEFAULT_MODELS = {
-    "openrouter_deepseek": "deepseek/deepseek-chat-v3.1:free",
-    "openrouter_nvidia": "nvidia/nemotron-nano-9b-v2:free",
-    "openrouter_openai": "openai/gpt-oss-20b:free",
+    "openrouter_deepseek": "meta-llama/llama-3.3-70b-instruct:free",
+    "openrouter_nvidia": "nvidia/nemotron-3-nano-30b-a3b:free",
+    "openrouter_openai": "openai/gpt-oss-120b:free",
     "local": "gemma:2b"
 }
 
