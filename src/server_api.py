@@ -12,9 +12,9 @@ app = FastAPI()
 def get_llm_responses_with_prompt(request: LlmRequest):
     # Hardcoded models
     models = {
-        "openrouter_deepseek": "deepseek/deepseek-chat-v3.1:free",
-        "openrouter_nvidia": "nvidia/nemotron-nano-9b-v2:free",
-        "openrouter_openai": "openai/gpt-oss-20b:free"
+        "openrouter_deepseek": "meta-llama/llama-3.3-70b-instruct:free",
+        "openrouter_nvidia": "nvidia/nemotron-3-nano-30b-a3b:free",
+        "openrouter_openai": "openai/gpt-oss-120b:free"
     }
 
     prompt, llm_responses = get_llm_responses(models, request.prompt_template_name, request.question)
