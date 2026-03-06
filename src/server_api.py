@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from src.logger_setup import logger_setup
 from src.llm_evaluator import get_llm_responses
 from src.models import LlmResponsesModel, LlmRequest
@@ -7,6 +8,14 @@ from src.models import LlmResponsesModel, LlmRequest
 logger = logger_setup(__name__)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 @app.post("/responses", response_model=LlmResponsesModel)
 def get_llm_responses_with_prompt(request: LlmRequest):
